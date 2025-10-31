@@ -1,0 +1,6 @@
+---
+- name: Install certbot package
+  ansible.builtin.apt:
+    name: certbot
+    state: present
+  when: ansible_os_family == "Debian"

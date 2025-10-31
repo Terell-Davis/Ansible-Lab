@@ -1,0 +1,13 @@
+- name: To create a User using ansible playbook
+  hosts: myhosts
+  become: yes  # Use sudo privileges if required for user creation
+  tasks:
+    - name: Adding the user
+      ansible.builtin.user:
+        name: TestUser  # Replace with the username you want to create
+        groups: arcana
+        state: present
+        password: "{{ 'secret' | password_hash('sha512') }}"
+        shell: /bin/bash  # Specify the shell for the user (optional)
+        createhome: yes  # Create the user's home directory (optional)
+        append: true

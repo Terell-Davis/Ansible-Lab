@@ -1,0 +1,27 @@
+---
+- name: Configure nginx
+  ansible.builtin.template:
+    src: templates/etc/nginx/sites-available/plex.j2
+    dest: /etc/nginx/sites-available/plex
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - reload_nginx
+
+- name: Test nginx config
+  ansible.builtin.command: nginx -t
+  register: plex_reg_nginx_test
+  changed_when: false
+  failed_when: false
+
+- name: Assert that nginx test is OK
+  ansible.builtin.assert:
+    that: plex_reg_nginx_test.stderr == plex_nginx_good_test_result
+    msg: "Nginx check was not sucessfull: \n{{ plex_reg_nginx_test.stderr_lines }}"
+
+- name: Symlink nginx plex site to sites-enabled
+  ansible.builtin.file:
+    src: /etc/nginx/sites-available/plex
+    dest: /etc/nginx/sites-enabled/plex
+    state: link

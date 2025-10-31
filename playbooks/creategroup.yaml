@@ -1,0 +1,8 @@
+- name: To create a User using ansible playbook
+  hosts: myhosts
+  become: yes  # Use sudo privileges if required for user creation
+  tasks:
+    - name: Ensure group "arcana" exists
+      ansible.builtin.group:
+        name: arcana
+        state: present

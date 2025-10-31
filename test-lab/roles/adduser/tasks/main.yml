@@ -1,0 +1,5 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for adduser
+- name: Add user and group
+  import_tasks: user-group.yml
