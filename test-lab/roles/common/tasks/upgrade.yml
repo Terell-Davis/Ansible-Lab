@@ -1,0 +1,9 @@
+---
+- name: Upgrade packages
+  ansible.builtin.package:
+    name: "*"
+    state: latest
+
+- name: Auto remove unused packages
+  ansible.builtin.package:
+    autoremove: yes

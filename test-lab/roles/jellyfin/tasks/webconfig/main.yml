@@ -1,0 +1,11 @@
+---
+- name: Configure webserver
+  block:
+    - name: Configure nginx webserver
+      ansible.builtin.include_tasks: nginx.yml
+      when: webserver.type == 'nginx'
+
+    # apache is not supported yet
+    - name: Configure apache2 webserver
+      ansible.builtin.include_tasks: apache2.yml
+      when: webserver.type == 'apache' or webserver.type == 'apache2'

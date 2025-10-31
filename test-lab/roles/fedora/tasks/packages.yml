@@ -1,0 +1,15 @@
+---
+- name: Install the basics
+  dnf:
+    name:
+      - sudo
+      - python3-libdnf5
+      - net-tools
+      - curl
+      - ufw
+      - nginx
+      - htop
+      - samba
+      - unzip
+      - zip
+    state: latest

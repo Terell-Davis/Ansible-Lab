@@ -1,0 +1,22 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for plex
+- name: OS specific (May add Fedora later)
+  include_vars: "{{ ansible_distribution | lower }}.yml"
+
+- name: Debain setup tasks
+  include_tasks: debian.yml
+  when: ansible_distribution == "Debian"
+
+- name: Configure fail2ban
+  ansible.builtin.include_tasks: fail2ban.yml
+
+- name: Configure webserver
+  ansible.builtin.include_tasks: webconfig/main.yml
+
+- name: Enable and start plex
+  ansible.builtin.systemd:
+    name: plexmediaserver.service
+    state: started
+    enabled: true
+  changed_when: false

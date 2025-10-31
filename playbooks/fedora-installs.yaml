@@ -1,0 +1,12 @@
+- name: To create a User using ansible playbook
+  hosts: myhosts
+  become: yes  # Use sudo privileges if required for user creation
+  tasks:
+    - name: Install Sudo
+      dnf:
+        name: sudo
+        state: latest
+    - name: Install Net-Tools
+      dnf:
+        name: net-tools
+        state: latest
