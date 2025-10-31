@@ -1,0 +1,16 @@
+#
+# {{ ansible_managed }}
+#
+
+[plex]
+
+backend = auto
+enabled = true
+port = {% for p in plex_fail2ban_ports %}{{ p }}{% if not loop.last %},{% endif %}{% endfor %}
+
+protocol = tcp
+filter = plex
+maxretry = {{ plex_fail2ban_maxretry }}
+bantime = {{ plex_fail2ban_bantime }}
+findtime = {{ plex_fail2ban_findtime }}
+logpath = {{ plex_log_dir }}/plex*.log
