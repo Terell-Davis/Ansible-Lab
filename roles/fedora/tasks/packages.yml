@@ -1,0 +1,14 @@
+---
+- name: Install the basics
+  ansible.builtin.package:
+    name:
+      - sudo
+      - python3-libdnf5
+      - net-tools
+      - curl
+      - ufw
+      - htop
+      - samba
+      - unzip
+      - zip
+    state: latest

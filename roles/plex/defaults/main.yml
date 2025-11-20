@@ -1,0 +1,7 @@
+#SPDX-License-Identifier: MIT-0
+---
+# defaults file for plex
+plex_domain_name: plex.foo.bar
+
+plex_log_dir: /var/log/plex
+

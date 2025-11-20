@@ -1,0 +1,43 @@
+---
+jellyfin_name: jellyfin
+jellyfin_group: arcana
+jellyfin_unix_user: "{{ jellyfin_name }}"
+jellyfin_unix_group: "{{ jellyfin_group }}"
+jellyfin_additional_unix_groups: []
+jellyfin_skip_restart: false
+
+# --- config files ---
+# TODO: if domain empty, unset in templating
+jellyfin_domain_name: jellyfin.foo.bar
+jellyfin_instance_name: jellyfin
+
+jellyfin_package_dependencies:
+  - gnupg
+  - libicu76
+  - python3-debian # deb822_repository module
+
+# convert new architecture naming to old architecture naming
+jellyfin_deb_architecture: "{{ jellyfin_ansible_deb_architectures[ansible_architecture] }}"
+
+# --- paths/urls---
+jellyfin_data_dir: /var/lib/jellyfin
+jellyfin_config_dir: /etc/jellyfin
+jellyfin_cache_dir: /var/cache/jellyfin
+jellyfin_log_dir: /var/log/jellyfin
+
+jellyfin_web_bin: /usr/share/jellyfin/web
+jellyfin_ffmpeg_bin: /usr/lib/jellyfin-ffmpeg/ffmpeg
+
+jellyfin_log_file_path: "{{ jellyfin_log_dir }}/{{ jellyfin_log_file_name }}"
+
+jellyfin_apt_signing_key_uri: https://repo.jellyfin.org/jellyfin_team.gpg.key
+
+# --- permissions ---
+jellyfin_permission_etc_file: "0644"
+jellyfin_permission_etc_dir: "0755"
+
+# --- jellyfin runtime args ---
+jellyfin_additional_opts: ""
+
+jellyfin_malloc_trim_threshold: 131072
+jellyfin_complus_gcserver: ""

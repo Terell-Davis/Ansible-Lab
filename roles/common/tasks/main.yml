@@ -1,0 +1,9 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for common
+- name: Change motd (Debian & Redhat Families)
+  import_tasks: motd.yml
+
+
+- name: Upgrade Packages
+  import_tasks: upgrade.yml

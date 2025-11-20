@@ -1,0 +1,15 @@
+---
+- name: Create Group
+  ansible.builtin.group:
+    name: arcana # Group
+    state: present
+
+- name: Adding the user
+  ansible.builtin.user:
+    name: TestUser  # User Name
+    groups: arcana # Group Name
+    state: present
+    password: "{{ 'secret' | password_hash('sha512') }}"
+    shell: /bin/bash
+    createhome: yes
+    append: true

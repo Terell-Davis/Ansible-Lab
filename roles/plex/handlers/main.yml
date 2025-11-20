@@ -1,0 +1,13 @@
+#SPDX-License-Identifier: MIT-0
+---
+# handlers file for plex
+- name: Restart plexmediaserver
+  ansible.builtin.systemd:
+    name: plexmediaserver.service
+    state: restarted
+  listen: restart_plex
+
+- name: Systemd daemon-reload
+  ansible.builtin.systemd:
+    daemon_reload: true
+  listen: systemd_daemon_reload
