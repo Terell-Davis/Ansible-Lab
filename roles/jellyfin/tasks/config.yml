@@ -8,6 +8,7 @@
     mode: "{{ jellyfin_permission_etc_file }}"
   notify:
     - restart_jellyfin
+  become: true
 
 - name: Configure systemd service override
   ansible.builtin.template:
@@ -19,3 +20,4 @@
   notify:
     - restart_jellyfin
     - systemd_daemon_reload
+  become: true

@@ -9,9 +9,11 @@
     components: main
     architectures: "{{ jellyfin_deb_architecture }}"
     signed_by: "{{ jellyfin_apt_signing_key_uri }}"
+  become: true
 
 - name: Install Jellyfin
   ansible.builtin.apt:
     pkg: jellyfin
     update_cache: true
   notify: restart_jellyfin
+  become: true

@@ -12,3 +12,4 @@
       - unzip
       - zip
     state: latest
+  become: true

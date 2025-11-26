@@ -3,11 +3,13 @@
   ansible.builtin.apt:
     pkg: "{{ jellyfin_package_dependencies | list }}"
     state: present
+  become: true
 
 - name: Create Jellyfin unix group
   ansible.builtin.group:
     name: "{{ jellyfin_unix_group }}"
     state: present
+  become: true
 
 - name: Create Jellyfin unix user
   ansible.builtin.user:
@@ -17,6 +19,7 @@
     append: true
     state: present
     shell: /bin/false
+  become: true
 
 - name: Create dirs owned by Jellyfin user
   ansible.builtin.file:
@@ -30,3 +33,4 @@
     - "{{ jellyfin_data_dir }}"
     - "{{ jellyfin_log_dir }}"
     - "{{ jellyfin_config_dir }}"
+  become: true
