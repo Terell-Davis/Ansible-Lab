@@ -4,6 +4,14 @@
 
 .idea
 homelab.ini
-test-setup.yml
+td-lab.ini
 
 playbooks
+
+Ansible Lab.iml
+
+*.retry
+*/__pycache__
+*.pyc
+.cache
+

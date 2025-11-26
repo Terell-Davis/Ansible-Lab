@@ -1,12 +1,13 @@
 - name: Testing Roles
   hosts: all
-  become: true
   roles:
 #    - common
 #    - adduser
 #    - jellyfin
 #    - plex
-    - caddy
+#    - caddy
+#    - dotfiles
+    - ufw
   tasks:
    - name: Ping my hosts
      ansible.builtin.ping:
