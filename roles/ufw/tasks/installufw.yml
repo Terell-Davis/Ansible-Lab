@@ -1,0 +1,22 @@
+- name: Install ufw
+  ansible.builtin.package:
+    name: ufw
+    state: present
+    update_cache: yes
+  become: true
+
+- name: UFW - Allow SSH connections
+  community.general.ufw:
+    rule: allow
+    name: OpenSSH
+  become: true
+
+- name: UFW - Enable and deny by default
+  community.general.ufw:
+    state: enabled
+    default: deny
+  become: true
+
+- name: UFW - Reload firewall
+  ansible.builtin.command: ufw reload
+  become: true
